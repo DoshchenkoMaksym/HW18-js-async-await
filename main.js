@@ -18,23 +18,23 @@ async function timeout(data, ms) {
 */
 
 async function getResult() {
-    let userInfo = await timeout(getUserInfo(), 1000);
-    let userAvatar = await timeout(getUserAvatar(userInfo), 1000);
-    let userAdditInfo = await timeout(getUserAdditionalInfo(userAvatar), 1000);
+    let userInfo = await getUserInfo();
+    let userAvatar = await getUserAvatar(userInfo);
+    let userAdditInfo = await getUserAdditionalInfo(userAvatar);
     console.log(userAdditInfo)
 };
 getResult()
 
 async function getUserInfo() {
-    return { name: 'Vic', age: 21, id: 1 };
+    return timeout({ name: 'Vic', age: 21, id: 1 }, 1000);
 };
 async function getUserAvatar(userInfo) {
     userInfo.avatar = 'https://previews.123rf.com/images/stockgiu/stockgiu1708/stockgiu170802061/83728179-avatar-sketch-of-a-funny-man-s-haed-with-sunglasses-and-hairstyle-design.jpg'
-    return userInfo;
+    return timeout(userInfo, 1000);
 };
 async function getUserAdditionalInfo(userInfo) {
     userInfo.interests = ['sport', 'books'];
-    return userInfo
+    return  timeout(userInfo, 1000);
 };
 
 /* Используйте async / await. Необходимо добавить обработку ошибок. Ошибка должна быть выведена в консоль.
